@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#f5e8c8"/>
+      <stop offset="100%" stop-color="#d4b87a"/>
+    </radialGradient>
+    <pattern id="mandala-pat" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
+      <g opacity="0.13" fill="none" stroke="#b8920a" stroke-width="1">
+        <circle cx="140" cy="140" r="120"/>
+        <circle cx="140" cy="140" r="90"/>
+        <circle cx="140" cy="140" r="60"/>
+        <circle cx="140" cy="140" r="30"/>
+        <line x1="140" y1="20" x2="140" y2="260"/>
+        <line x1="20" y1="140" x2="260" y2="140"/>
+        <line x1="55" y1="55" x2="225" y2="225"/>
+        <line x1="225" y1="55" x2="55" y2="225"/>
+        <line x1="20" y1="90" x2="260" y2="190"/>
+        <line x1="20" y1="190" x2="260" y2="90"/>
+        <line x1="90" y1="20" x2="190" y2="260"/>
+        <line x1="190" y1="20" x2="90" y2="260"/>
+        <path d="M140,20 Q170,80 140,140 Q110,80 140,20"/>
+        <path d="M260,140 Q200,170 140,140 Q200,110 260,140"/>
+        <path d="M140,260 Q110,200 140,140 Q170,200 140,260"/>
+        <path d="M20,140 Q80,110 140,140 Q80,170 20,140"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <rect width="1400" height="900" fill="url(#mandala-pat)"/>
+  <!-- center large mandala -->
+  <g opacity="0.08" fill="none" stroke="#8b6010" stroke-width="1.5" transform="translate(700,450)">
+    <circle r="380"/>
+    <circle r="300"/>
+    <circle r="220"/>
+    <circle r="140"/>
+    <circle r="60"/>
+    <line x1="-380" y1="0" x2="380" y2="0"/>
+    <line x1="0" y1="-380" x2="0" y2="380"/>
+    <line x1="-268" y1="-268" x2="268" y2="268"/>
+    <line x1="268" y1="-268" x2="-268" y2="268"/>
+  </g>
+</svg>

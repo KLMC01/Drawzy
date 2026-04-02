@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kouvul Vasanthaya 2026 – Raffle Draw</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/style.css"/>
+</head>
+<body>
+  <div id="bg-overlay"></div>
+
+  <button class="hamburger" id="menuBtn"><span></span><span></span><span></span></button>
+
+  <!-- ══════ SIDEBAR ══════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2 data-i18n="settings">Settings</h2>
+      <button class="close-btn" id="closeSidebar">✕</button>
+    </div>
+    <div class="sb-tabs">
+      <button class="sb-tab active" data-tab="settings" data-i18n="tab_settings">⚙ Settings</button>
+      <button class="sb-tab" data-tab="history"  data-i18n="tab_history">📜 History</button>
+    </div>
+
+    <!-- Settings Tab -->
+    <div class="sb-panel" id="tabSettings">
+
+      <div class="sidebar-section">
+        <label data-i18n="language">Language</label>
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="en">🇬🇧 English</button>
+          <button class="lang-btn" data-lang="si">🇱🇰 සිංහල</button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <label data-i18n="spin_duration">Spin Duration (seconds)</label>
+        <div class="range-row">
+          <input type="range" id="spinDuration" min="3" max="15" value="6" step="1"/>
+          <span id="spinDurationVal">6s</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <label data-i18n="logo_size">Logo Size</label>
+        <div class="range-row">
+          <input type="range" id="logoSize" min="60" max="400" value="90" step="5"/>
+          <span id="logoSizeVal">90px</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <label data-i18n="bg_image">Background Image</label>
+        <div class="dd-zone" id="bgDropZone">
+          <div class="dd-icon">🖼️</div>
+          <div class="dd-text">Drag &amp; drop or click<br><span data-i18n="any_image">any image file</span></div>
+          <input type="file" id="bgFileInput" accept="image/*" style="display:none"/>
+        </div>
+        <div class="dd-preview-row" id="bgPreviewRow" style="display:none">
+          <img id="bgPreviewThumb" src="" alt=""/><span id="bgPreviewName"></span>
+          <button class="dd-clear-btn" id="resetBg">✕</button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <label data-i18n="logo_image">Logo Image</label>
+        <div class="dd-zone" id="logoDropZone">
+          <div class="dd-icon">🏅</div>
+          <div class="dd-text">Drag &amp; drop or click<br><span data-i18n="any_image">any image file</span></div>
+          <input type="file" id="logoFileInput" accept="image/*" style="display:none"/>
+        </div>
+        <div class="dd-preview-row" id="logoPreviewRow" style="display:none">
+          <img id="logoPreviewThumb" src="" alt=""/><span id="logoPreviewName"></span>
+          <button class="dd-clear-btn" id="resetLogo">✕</button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <label data-i18n="draw_sound">🔊 Drawing Sound</label>
+        <select id="drawSoundSelect" class="sound-select">
+          <option value="tick"   data-i18n="snd_tick">Tick (default)</option>
+          <option value="drum"   data-i18n="snd_drum">Drum Roll</option>
+          <option value="click"  data-i18n="snd_click">Click</option>
+          <option value="custom" data-i18n="snd_custom">Custom File…</option>
+          <option value="none"   data-i18n="snd_none">None</option>
+        </select>
+        <div id="drawSoundUploadRow" class="file-upload-btn hidden">
+          🎵 <span data-i18n="choose_audio">Choose Audio</span>
+          <input type="file" id="drawSoundFile" accept="audio/*" style="display:none"/>
+        </div>
+        <div class="volume-row">
+          <span class="vol-label" data-i18n="vol">Vol</span>
+          <input type="range" id="drawVol" min="0" max="1" step="0.05" value="0.4"/>
+          <span id="drawVolVal">40%</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <label data-i18n="win_sound">🏆 Winning Sound</label>
+        <select id="winSoundSelect" class="sound-select">
+          <option value="fanfare" data-i18n="snd_fanfare">Fanfare (default)</option>
+          <option value="chime"   data-i18n="snd_chime">Chime</option>
+          <option value="trumpet" data-i18n="snd_trumpet">Trumpet</option>
+          <option value="custom"  data-i18n="snd_custom">Custom File…</option>
+          <option value="none"    data-i18n="snd_none">None</option>
+        </select>
+        <div id="winSoundUploadRow" class="file-upload-btn hidden">
+          🎵 <span data-i18n="choose_audio">Choose Audio</span>
+          <input type="file" id="winSoundFile" accept="audio/*" style="display:none"/>
+        </div>
+        <div class="volume-row">
+          <span class="vol-label" data-i18n="vol">Vol</span>
+          <input type="range" id="winVol" min="0" max="1" step="0.05" value="0.5"/>
+          <span id="winVolVal">50%</span>
+        </div>
+      </div>
+
+    </div><!-- /tabSettings -->
+
+    <!-- History Tab -->
+    <div class="sb-panel hidden" id="tabHistory">
+      <div class="history-list" id="historyList">
+        <p class="empty-msg" data-i18n="no_draws_yet">No draws yet.</p>
+      </div>
+      <button class="reset-btn" id="clearHistoryBtn" style="margin-top:8px" data-i18n="clear_history">Clear History</button>
+    </div>
+
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- Logo -->
+  <div class="logo-area"><img src="assets/logo-placeholder.svg" id="logoImg" alt="Logo"/></div>
+
+  <!-- Fullscreen overlay -->
+  <div class="fs-overlay" id="fsOverlay">
+    <div id="bg-overlay-fs"></div>
+    <div class="fs-logo-area"><img src="assets/logo-placeholder.svg" id="fsLogoImg" alt="Logo"/></div>
+    <div class="fs-wheel-wrapper">
+      <div class="wheel-pointer fs-pointer">▼</div>
+      <canvas id="wheelCanvasFS" width="800" height="800"></canvas>
+      <button class="spin-btn fs-spin-btn" id="spinBtnFS" data-i18n="spin">Spin</button>
+    </div>
+    <div class="winner-ticker fs-ticker" id="winnerTickerFS"></div>
+    <button class="fs-exit-btn" id="fsExitBtn" data-i18n="exit_fs">✕ Exit</button>
+  </div>
+
+  <!-- Main -->
+  <main class="main-layout" id="mainLayout">
+    <section class="wheel-section">
+      <div class="wheel-wrapper">
+        <div class="wheel-pointer">▼</div>
+        <canvas id="wheelCanvas" width="500" height="500"></canvas>
+        <button class="spin-btn" id="spinBtn" data-i18n="spin">Spin</button>
+      </div>
+      <div class="wheel-bottom-row">
+        <div class="winner-ticker" id="winnerTicker"></div>
+        <button class="fullscreen-btn" id="fullscreenBtn" data-i18n="fullscreen">⛶ Fullscreen</button>
+      </div>
+    </section>
+
+    <section class="panel-section">
+      <div class="panel-card">
+
+        <!-- File import (xlsx, csv, docx, txt) -->
+        <div class="file-drop-zone" id="dropZone">
+          <span data-i18n="file_drop">📂 Select or drag file here</span>
+          <small data-i18n="file_hint">Excel (.xlsx), CSV, Word (.docx), TXT</small>
+          <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,.txt,.docx" style="display:none"/>
+        </div>
+
+        <!-- ZIP upload for names + photos -->
+        <div class="zip-drop-zone" id="zipDropZone">
+          <span data-i18n="zip_drop">📦 Drop ZIP here (names + photos)</span>
+          <small data-i18n="zip_hint">ZIP must contain: <b>names.csv</b> + photos named after each person</small>
+          <input type="file" id="zipFileInput" accept=".zip" style="display:none"/>
+        </div>
+
+        <!-- Photo preview grid -->
+        <div class="photo-preview-grid" id="photoPreviewGrid" style="display:none">
+          <div class="photo-preview-header">
+            <span id="photoPreviewCount"></span>
+            <button class="photo-preview-clear" id="photoClearBtn" data-i18n="clear_photos">Clear photos</button>
+          </div>
+          <div class="photo-thumbs" id="photoThumbs"></div>
+        </div>
+
+        <div class="names-box-wrapper">
+          <div class="names-box" id="namesBox" contenteditable="true" spellcheck="false"
+               data-placeholder="Type names here, one per line…"></div>
+          <div class="names-count"><span id="nameCount">0</span> <span data-i18n="names">names</span></div>
+        </div>
+
+        <div class="panel-actions">
+          <button id="shuffleBtn" class="action-btn shuffle-btn" data-i18n="shuffle">🔀 Shuffle</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-i18n="footer">Developed by KLMC</footer>
+  <div class="spin-lock" id="spinLock"></div>
+
+  <!-- Body-level overlays (moved into FS element when fullscreen active) -->
+  <canvas id="confettiCanvas"></canvas>
+  <div class="winner-screen" id="winnerScreen">
+    <div class="ws-fireworks-ring" id="wsFwRing"></div>
+    <div class="winner-screen-inner" id="wsInner">
+      <div class="ws-photo-box" id="wsPhotoBox"><span class="ws-photo-placeholder">🏆</span></div>
+      <div class="ws-name-box">
+        <div class="ws-label" data-i18n="winner_label">🎉 Winner!</div>
+        <div class="ws-name" id="wsName">Name</div>
+      </div>
+    </div>
+    <button class="ws-close-btn" id="wsCloseBtn" data-i18n="continue">Continue ▶</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="src/i18n.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
