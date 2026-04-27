@@ -1,5 +1,4 @@
-# Kouvul Vasanthaya 2026 – Raffle Draw v9
-## Standalone Edition (No database, no server required)
+#Drawzy
 ### Developed by KLMC
 
 ---
