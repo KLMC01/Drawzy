@@ -1,2 +1,4 @@
 [build]
-  publish = "public"
+  base = ""
+  publish = ""
+  command = "echo 'No build command needed for a static site'"
